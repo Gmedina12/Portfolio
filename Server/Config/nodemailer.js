@@ -1,18 +1,14 @@
 import nodemailer from 'nodemailer'
 import 'dotenv/config'
 
-const { GMAIL, GMAIL_PASS: PASS } = process.env
+require('dotenv').config();
 
-export const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-        user: GMAIL,
-        pass: PASS
-    }
-})
+export const emailConfig = {
+  service: 'Gmail',
+  auth: {
+    user: process.env.EMAIL_ADDRESS,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+};
 
-transporter.verify()
-    .then(() => console.log('nodemailer has been configured'))
-    .catch((error) => console.log(error.message))
+
