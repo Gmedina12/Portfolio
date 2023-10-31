@@ -2,7 +2,26 @@ import { gql } from 'apollo-server-core';
 
 
 export const typeDefs = gql`
-  type Query {
-    latestExchangeRate(baseCurrency: String!, targetCurrency: String!): Float
-  }
+type Query {
+  convertCurrency(
+    from: String!
+    to: String!
+    amount: Float!
+  ): ConversionResult
+}
+
+type ConversionResult {
+  status: String
+  updated_date: String
+  base_currency_code: String
+  base_currency_name: String
+  amount: Float
+  rates: CurrencyRates
+}
+
+type CurrencyRates {
+  currency_name: String
+  rate: Float
+  rate_for_amount: Float
+}
 `;
