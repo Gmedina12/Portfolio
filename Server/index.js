@@ -3,7 +3,6 @@ import { ApolloServer } from 'apollo-server-express';
 import {resolvers} from './src/Resolvers/resolvers.js'
 import { typeDefs } from './src/Query/Query.js';
 
-
 async function startServer() {
   const app = express();
 
