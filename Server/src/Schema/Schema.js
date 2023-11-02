@@ -19,7 +19,22 @@ type ConversionResult {
 
 type CurrencyRates {
   currency_name: String
-  rate: Float
-  rate_for_amount: Float
-}`;
+  rate: String
+  rate_for_amount: String
+}
+type Query {
+  convertCurrency(from: String, to: String, amount: String): ConversionResult
+}
 
+type ConversionResult {
+  amount: String
+  rates: CurrencyRates
+}
+type Mutation{
+  measurementUnits(
+    group: String!
+    convertFrom: String!
+    convertTo: String!
+    quantity: String!): String
+}
+`;
