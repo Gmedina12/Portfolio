@@ -47,6 +47,7 @@ type Mutation{
 }
 type Mutation {
   recieveContactEmail(
+    name: String!
     sender: String!
     subject: String!
     message: String!

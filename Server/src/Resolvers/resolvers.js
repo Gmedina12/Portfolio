@@ -48,9 +48,9 @@ export const resolvers = {
         }
         
       },
-      recieveContactEmail: async ( _, {sender, subject, message}) => {
+      recieveContactEmail: async ( _, {name, sender, subject, message}) => {
         try{
-          const recieveEmail = recieveContactEmail(_, {sender, subject, message})
+          const recieveEmail = recieveContactEmail(_, {name, sender, subject, message})
           return recieveEmail
         }
         catch(error){
