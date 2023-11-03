@@ -1,8 +1,7 @@
 import axios from "axios";
-import { readFile } from 'fs/promises'
-import jsonImport from '../../measurementsApi.json' assert { type: 'json' }
-
-// import { convertUnits } from "../Mutation/convertUnits.js";
+import { convertUnits } from "../Mutation/convertUnits.js";
+import {sendConfirmationEmail} from '../Mutation/sendConfirmationEmail.js'
+import {recieveContactEmail} from '../Mutation/recieveContactEmail.js'
 
 export const resolvers = {
   Query: {
@@ -25,51 +24,42 @@ export const resolvers = {
         throw new Error('500 -	Server error' + error)
       }
     },
+    getConfirmationMessage: () => confirmationMessage
   },
   Mutation: {
     measurementUnits: async (_, args) => {
         try{
-          const {group, convertFrom, convertTo, quantity} = args
-          const jsonData = await readFile(jsonImport, 'utf-8');
-          const measurementsList = JSON.parse(jsonData);
-      
-
-          const convertUnits = (measurementData, convertFrom, convertTo, quantity) => {
-            if (!measurementData) {
-              throw new Error(`Grupo de medida '${group}' no encontrado.`);
-            }
-          
-            const equivalencias = measurementData.equivalencias;
-            if (!equivalencias) {
-              throw new Error(`No se encontraron equivalencias para el grupo de medida '${group}'.`);
-            }
-          
-            const factorConversion = equivalencias[parseFloat(convertFrom)] && equivalencias[parseFloat(convertFrom)][parseFloat(convertTo)];
-          
-            if (factorConversion === undefined) {
-              throw new Error(`No se encontró una conversión válida de '${convertFrom}' a '${convertTo}'.`);
-            }
-          
-            const convertedQuantity = parseFloat(quantity) * factorConversion;
-          
-            return {
-              group,
-              convertFrom,
-              convertTo,
-              originalQuantity: quantity,
-              convertedQuantity,
-            }
-        }
-          const result = convertUnits(measurementsList[group], convertFrom, convertTo, quantity); 
-          return result;
-
+          const result = convertUnits(args); 
+          return result
         }
         catch(error){
-          console.log("Error al realizar conversión de unidades", error);
+            console.log("Error al realizar conversión de unidades", error);
             throw new Error ('500 - Internal server error: ' + error)
         }
-    },
+      },
+      sendConfirmationEmail: async ( sender, subject ) => {
+        try{
+          const sendMail = sendConfirmationEmail( sender, subject )
+          return sendMail
+        }
+        catch(error){
+          console.log("Error al enviar el  email", error);
+          throw new Error ('500 - Internal server error: ' + error)
+        }
+        
+      },
+      recieveContactEmail: async ( _, {sender, subject, message}) => {
+        try{
+          const recieveEmail = recieveContactEmail(_, {sender, subject, message})
+          return recieveEmail
+        }
+        catch(error){
+          console.log("No se pudo recibir el email", error);
+          throw new Error ('500 - Internal server error: ' + error)
+        }
+      },
   }
-};
+  }
+
 
 

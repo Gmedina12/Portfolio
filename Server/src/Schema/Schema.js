@@ -23,18 +23,42 @@ type CurrencyRates {
   rate_for_amount: String
 }
 type Query {
-  convertCurrency(from: String, to: String, amount: String): ConversionResult
+  convertCurrency(from: String
+     to: String
+      amount: String): ConversionResult
 }
 
 type ConversionResult {
   amount: String
   rates: CurrencyRates
 }
+type Query {
+  getUnitsByGroups (
+    group: String!,
+  )
+  : [String]
+}
 type Mutation{
   measurementUnits(
     group: String!
     convertFrom: String!
     convertTo: String!
-    quantity: String!): String
+    quantity: Float!): Float
 }
-`;
+type Mutation {
+  recieveContactEmail(
+    sender: String!
+    subject: String!
+    message: String!
+  ): String
+}
+
+type Mutation {
+  sendConfirmationEmail(
+    sender: String!
+    subject: String!): String
+}
+
+type Query {
+  getConfirmationMessage: String
+}`;
