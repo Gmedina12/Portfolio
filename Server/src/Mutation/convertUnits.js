@@ -23,5 +23,15 @@ export const convertUnits = async (args) => {
         throw new Error('500 - Internal Error: No se pudo realizar la conversión' + error)
     }
 
-
 }
+
+export const getUnitsByGroups = async (group) => {
+    const measurementGroup = jsonImport[group];
+    console.log("el Json", measurementGroup)
+    if(measurementGroup){
+      return measurementGroup.unidades
+    }
+    else{
+      throw new Error(`Grupo de medida '${group}' no encontrado.`);
+    }
+}//ARREGLAR

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { convertUnits } from "../Mutation/convertUnits.js";
+import { convertUnits, getUnitsByGroups } from "../Mutation/convertUnits.js";
 import {sendConfirmationEmail} from '../Mutation/sendConfirmationEmail.js'
 import {recieveContactEmail} from '../Mutation/recieveContactEmail.js'
 
@@ -24,7 +24,18 @@ export const resolvers = {
         throw new Error('500 -	Server error' + error)
       }
     },
+    getUnitsByGroups: async(_, {group}) =>{
+      try{
+        const totalUnits = getUnitsByGroups(group)
+        return totalUnits
+      }
+      catch(error){
+        console.log('No se pudo acceder a los grupos'+ error)
+        throw new Error ('500 - Internal server error: ' + error)
+      }
+    },
     getConfirmationMessage: () => confirmationMessage
+
   },
   Mutation: {
     measurementUnits: async (_, args) => {

@@ -1,6 +1,4 @@
 import { transporter } from '../../Config/nodemailer.js';
-// import {sendConfirmationEmail} from './sendConfirmationEmail.js'
-// import 'dotenv/config'
 
 export const recieveContactEmail = async (_, {name, sender, subject, message}) => {
     const mailOptions = {
@@ -12,7 +10,6 @@ export const recieveContactEmail = async (_, {name, sender, subject, message}) =
     try {
         await transporter.sendMail(mailOptions);
         
-        // sendConfirmationEmail();
         return `Thanks for contact me ${name}!⭐`
         
       } catch (error) {
