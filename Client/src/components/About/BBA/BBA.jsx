@@ -15,8 +15,15 @@ const CONVERT_CURRENCY = gql`
         rate_for_amount
       }
     }
+  }`;
+
+const GET_ALL_CURRENCY = gql`
+query getAllCurrencies {
+  getAllCurrencies {
+    currencyCode
+    currencyName
   }
-`;
+}`;
 
 export const CurrencyConverter = () => {
   const [from, setFrom] = useState('');
@@ -27,21 +34,39 @@ export const CurrencyConverter = () => {
     variables: { from, to, amount },
   });
 
-  loading? <p>Loading...</p>
-  :error? <p>Error </p>
-  :''
+  loading ? <p>Loading...</p>
+    : error ? <p>Error </p>
+      : ''
+
+  const { loading: loadingAllC, error: errorAllC, data: dataAllC } = useQuery(GET_ALL_CURRENCY);
+
+  const switchCurrency = () => {
+    const temp = from;
+    setFrom(to);
+    setTo(temp);
+  };
 
   return (
     <div>
-     <div>
-     <label htmlFor="from">From</label>
-     <input value={from} onChange={e => setFrom(e.target.value)} placeholder="From" />
-     </div>
+      <div>
+        <label htmlFor="from">Convert Currency from: </label>
+        <select value={from} onChange={e => setFrom(e.target.value)} name='from'>
+          <option value="" selected disabled hidden>- Select a currency -</option>
+          {dataAllC?.getAllCurrencies && [...dataAllC?.getAllCurrencies].sort((a,b)=> a.currencyName.localeCompare(b.currencyName)).map(currency => <option value={currency.currencyCode}>{currency.currencyName}</option>)}
+        </select>
+      </div>
 
-      <input value={to} onChange={e => setTo(e.target.value)} placeholder="To" />
+      <div>
+        <label htmlFor='to'>Convert Currency to: </label>
+        <select value={to} onChange={e => setTo(e.target.value)} name='to'>
+          <option value="" selected disabled hidden>- Select a currency -</option>
+          {dataAllC?.getAllCurrencies && [...dataAllC?.getAllCurrencies].sort((a,b)=> a.currencyName.localeCompare(b.currencyName)).map(currency => <option value={currency.currencyCode}>{currency.currencyName}</option>)}
+        </select>
+      </div>
 
-      <input value={amount} onChange={e => setAmount(e.target.value)} placeholder="Amount" />
-      <p>{data.convertCurrency.amount} {from} is equivalent to {data.convertCurrency.rates.rate_for_amount} {to}</p>
+      <input value={amount} onChange={e => setAmount(e.target.value)} type='number' placeholder="Enter amount to convert" />
+     <div><p>{data?.convertCurrency.amount} {from} is equivalent to {data?.convertCurrency.rates?.rate_for_amount} {to}</p></div>
+     <button onClick={switchCurrency}>🔃</button>
     </div>
   );
 }

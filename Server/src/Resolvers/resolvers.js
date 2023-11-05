@@ -3,11 +3,12 @@ import { convertUnits, getUnitsByGroups } from "../Mutation/convertUnits.js";
 import {sendConfirmationEmail} from '../Mutation/sendConfirmationEmail.js'
 import {recieveContactEmail} from '../Mutation/recieveContactEmail.js'
 
+const API_KEY = '9b95fe62ecbbb466dc1623994a74a55094394d4e'
+
 export const resolvers = {
   Query: {
     convertCurrency: async (_, { from, to, amount }) => {
       try {
-        const API_KEY = '9b95fe62ecbbb466dc1623994a74a55094394d4e'
         const response = await axios.get(`https://api.getgeoapi.com/v2/currency/convert?api_key=${API_KEY}&from=${from}&to=${to}&amount=${amount}&format=json`)
         const data = response.data
 
@@ -23,6 +24,22 @@ export const resolvers = {
         console.log(error, 'soy el error y no pude hacer la petición')
         throw new Error('500 -	Server error' + error)
       }
+    },
+    getAllCurrencies: async () =>{
+        try {
+          
+          const allCurrencies = await axios.get(`https://api.getgeoapi.com/v2/currency/list?api_key=${API_KEY}&format=json`)
+          const {data} = allCurrencies
+          //[EUR, USD, COP] 
+          //{currencyCode, currencyName}
+          //currencyCode => Object.keys
+          //currencyName => allCurrencies.currencies (prop from json) n [currency] return value in that position
+          const currencies= Object.keys(data.currencies).map(currency => ({currencyCode: currency, currencyName: data.currencies[currency]}))
+          return currencies
+
+        } catch (error) {
+          throw new Error ('500 - Internal Server Error: ', error)
+        }
     },
     getUnitsByGroups: async(_, {group}) =>{
       try{

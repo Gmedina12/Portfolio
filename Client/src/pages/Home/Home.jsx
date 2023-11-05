@@ -1,14 +1,12 @@
-
-
 export const Home = () => {
 
     return (
         <div>
         <h1>Soy Gina Paola Medina</h1>
             <div>
-            <h4>"Sé tú mismo, el resto de los papeles ya están cogidos.
+            <h4>"Sé tú mismo, el resto de los papeles ya están cogidos".
                 - Oscar Wilde.
-            "</h4>   
+            </h4>   
             </div>   
 
             <div>
