@@ -34,4 +34,5 @@ export const getUnitsByGroups = async (group) => {
     else{
       throw new Error(`Grupo de medida '${group}' no encontrado.`);
     }
-}//ARREGLAR
+}
+

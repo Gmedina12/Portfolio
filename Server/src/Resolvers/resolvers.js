@@ -1,9 +1,11 @@
 import axios from "axios";
+import 'dotenv'
+import jsonImport from '../../measurementsApi.json' assert { type: 'json' }
 import { convertUnits, getUnitsByGroups } from "../Mutation/convertUnits.js";
 import {sendConfirmationEmail} from '../Mutation/sendConfirmationEmail.js'
 import {recieveContactEmail} from '../Mutation/recieveContactEmail.js'
 
-const API_KEY = '9b95fe62ecbbb466dc1623994a74a55094394d4e'
+const API_KEY = process.env.API_KEY
 
 export const resolvers = {
   Query: {
@@ -51,8 +53,17 @@ export const resolvers = {
         throw new Error ('500 - Internal server error: ' + error)
       }
     },
-    getConfirmationMessage: () => confirmationMessage
-
+    getConfirmationMessage: () => confirmationMessage,
+    getAllGroups: () => {
+        try{
+          const groups = Object.keys(jsonImport)
+          return groups;
+        }
+        catch(error){
+          console.log('Error al obtener todos los grupos', error);
+          throw new Error ('500 - Internal server error: ' + error)
+        }
+    }
   },
   Mutation: {
     measurementUnits: async (_, args) => {

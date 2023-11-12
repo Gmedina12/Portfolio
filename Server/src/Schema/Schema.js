@@ -37,6 +37,8 @@ type Query {
   )
   : [String]
   getConfirmationMessage: String
+
+  getAllGroups: [String]
 }
 
 type Mutation{
