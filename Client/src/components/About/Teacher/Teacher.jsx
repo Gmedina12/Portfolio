@@ -17,77 +17,99 @@ query Query {
   }`;
 
 export const MeasurementUnitsConverter = () => {
-    const [convertFrom, setconvertFrom] = useState('');
-    const [convertTo, setconvertTo] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [group, setGroup] = useState('');
+    const [convertFrom, setconvertFrom] = useState('')
+    const [convertTo, setconvertTo] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [group, setGroup] = useState('')
+    const [showResult, setShowResult] = useState(false);
 
     const [MeasurementUnits, { data, loading, error }] = useMutation(MESUREMENT_UNITS);
     // MeasurementUnits({variables: {group: group, convertFrom: convertFrom, convertTo: convertTo, quantity: quantity}})
 
     const { loading: loadingAllG, error: errorAllG, data: dataAllG } = useQuery(GET_ALL_GROUPS);
-    const { loading: loadingAllU, error: errorAllU, data: dataAllU, refetch: refetchAllU} = useQuery(GET_ALL_UNITS_BY_GROUPS);
-    
-    const handlerGroup = (event) =>{
+    const { loading: loadingAllU, error: errorAllU, data: dataAllU, refetch: refetchAllU } = useQuery(GET_ALL_UNITS_BY_GROUPS);
+
+    const handlerGroup = (event) => {
         setGroup(event.target.value)
-        //se le pasa la propiedad y su reasignación
-        refetchAllU({group: event.target.value})
+        setconvertFrom('')
+        setconvertTo('')
+        //Al refetch SIEMPRE se le pasa directamente la propiedad y su reasignación (valor), no olvidar
+        refetchAllU({ group: event.target.value })
     }
 
-    const switchUnit = () => {
-        const temp = convertFrom;
-        setconvertFrom(convertTo);
-        setconvertTo(temp);
+    const handlerCalculate = () => {
+        MeasurementUnits({ variables: { convertFrom: convertFrom, convertTo: convertTo, quantity: parseFloat(quantity), group: group } })
+        if (!convertFrom || !convertTo) {
+            alert("Select a measurement unit to convert")
+        } else {
+            setShowResult(true)
+        }
+       
     };
-
-    const handlerCalculate = () =>{
-        MeasurementUnits({variables:{convertFrom: convertFrom, convertTo: convertTo, quantity: parseFloat(quantity), group: group}})
-    }
+    const switchUnit = () => {
+        const temp = convertFrom
+        setconvertFrom(convertTo)
+        setconvertTo(temp)
+        setShowResult(false)
+    };
 
     return (
         <div>
             <div>
                 <div>
-                    <h3>Docente de Matemáticas y física 👩‍🏫</h3>
+                    <h3> Mathematics and Physics Teacher 👩‍🏫</h3>
                 </div>
                 <div>
-                    <h4>Conversor de unidades de medida 📐💾⚖️</h4>
+                    <h6>I've also worked as a mathematics and physics teacher. I love sharing knowledge, focusing on the essentials, and nurturing individuals to overcome their fears and develop a love for the exact sciences.</h6>
                 </div>
                 <div>
-                    <label htmlFor="group">Tipo de unidad:</label>
+                    <h4>Unit converter 📐💾⚖️</h4>
+                </div>
+                <div>
+                    <label htmlFor="group">Type of Measurement Unit: </label>
                     <select id='group' onChange={e => handlerGroup(e)} value={group}>
-                        <option value="" selected disabled hidden>- Selecciona el tipo de unidad -</option>
-                        {dataAllG && dataAllG.getAllGroups? dataAllG.getAllGroups.map((item, index) => <option key={index} value={item}>{item}</option>)
-                        :''}
+                        <option value="" selected disabled hidden>- Select unit -</option>
+                        {dataAllG && dataAllG.getAllGroups ? dataAllG.getAllGroups.map((item, index) => <option key={index} value={item}>{item}</option>)
+                            : ''}
                     </select>
                 </div>
 
                 <div>
-                    <label htmlFor="unit">Quiero convertir:</label>
+                    <label htmlFor="unit">I want to convert from: </label>
                     <select id='unit' onChange={e => setconvertFrom(e.target.value)} value={convertFrom}>
-                        <option value="" selected disabled hidden>- Selecciona la unidad-</option>
+                        <option value="" selected disabled hidden>- Select unit-</option>
                         {dataAllU?.getUnitsByGroups && dataAllU?.getUnitsByGroups.map((unit) => <option value={unit}>{unit}</option>)}
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="unit2">A: </label>
+                    <label htmlFor="unit2">To: </label>
                     <select id='unit2' onChange={e => setconvertTo(e.target.value)} value={convertTo}>
-                        <option value="" selected disabled hidden>- Selecciona la unidad -</option>
+                        <option value="" selected disabled hidden>- Select unit-</option>
                         {dataAllU?.getUnitsByGroups && dataAllU?.getUnitsByGroups.map((unit) => <option value={unit}>{unit}</option>)}
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="quantity" >Cantidad: </label>
-                    <input id='quantity' type='number' onChange={e => setQuantity(e.target.value)} />
+                    <label htmlFor="quantity" >Quantity: </label>
+                    <input id='quantity' type='number' onChange={e => setQuantity(e.target.value)} placeholder='Enter quatity to convert' />
                 </div>
                 <div>
-                    <button onClick={switchUnit}>🔄</button>
-                    <button onClick={handlerCalculate}>Calcular</button>
+                    <div>
+                        <button onClick={switchUnit}>🔄</button>
+                    </div>
+                    <button onClick={handlerCalculate} disabled={!group || !convertFrom || !convertTo || !quantity}>Convert 🖩</button>
                 </div>
                 <div>
-                    {loading ? <p> Loading...</p>
-                        : error ? <p>Error: {error.message }</p>
-                            : <p>Resultado 🔣: {data?.measurementUnits}</p>}
+                    {showResult &&
+                        (loading ? (
+                            <p>Calculating ⏳...</p>
+                        ) : error ? (
+                            <p>Error ❌: {error.message}</p>
+                        ) : (
+                            <p>
+                                Result 🔣: In {quantity} {convertFrom}s there are{' '}
+                                {data?.measurementUnits} {convertTo}s
+                            </p>
+                        ))}
                 </div>
             </div>
         </div>

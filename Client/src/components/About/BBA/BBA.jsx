@@ -32,11 +32,8 @@ export const CurrencyConverter = () => {
 
   const { loading, error, data } = useQuery(CONVERT_CURRENCY, {
     variables: { from, to, amount },
+    skip: !from || !to || !amount || amount <= 0,
   });
-
-  loading ? <p>Loading...</p>
-    : error ? <p>Error </p>
-      : ''
 
   const { loading: loadingAllC, error: errorAllC, data: dataAllC } = useQuery(GET_ALL_CURRENCY);
 
@@ -52,13 +49,13 @@ export const CurrencyConverter = () => {
       <h2>Background no tech</h2>
     </div>
     <div>
-      <h3>Administración de Empresas y Finanzas 🗒️📊</h3>  
+      <h3>Business Administration and Finance 🗒️📊</h3>  
     </div>
     <div>
-      <h6>A parte de ser Full-Stack Developer, soy licenciada en Administración de Empresas, con énfasis en finanzas y marketing. Con más de cinco (5) años de experiencia, me apasiona la economía, los movimientos de bolsa, el marketing y el mercado mundial.</h6>  
+      <h6>In addition to being a Full-Stack Developer, I hold a degree in Business Administration with a focus on finance and marketing. With over five (5) years of experience, I am passionate about economics, stock market trends, marketing, and the global market.</h6>  
     </div>
     <div>
-      <h4>Conversor de moneda 💴💵💱: </h4>
+      <h4>Currency Converter 💴💵💱: </h4>
     </div>
       <div>
         <label htmlFor="from">Convert Currency from: </label>
@@ -76,13 +73,11 @@ export const CurrencyConverter = () => {
         </select>
       </div>
 
-      <input value={amount} onChange={e => setAmount(e.target.value)} type='number' placeholder="Enter amount to convert" />
-     <div><p>{data?.convertCurrency.amount} {from} is equivalent to {data?.convertCurrency.rates?.rate_for_amount} {to}</p></div>
+      <input value={amount} onChange={e => setAmount(e.target.value)} type='number' placeholder="Enter amount to convert" min='0' />
+      {loading ? <p>Calculating 💱...</p>
+        : error ? <p>Error ❌: {error.message }</p>
+          : from && to && amount && amount > 0 ? <div><p>{data?.convertCurrency.amount} {from} is equivalent to ${data?.convertCurrency.rates?.rate_for_amount} {to}</p></div> : ''}
      <button onClick={switchCurrency}>🔄</button>
-
-     <div>
-      <h6>Aquí he plasmado dos de mis pasiones, creando una mini app con consumo de API Rest... Lo que siga después me inspiro</h6>  
-    </div>
     </div>
 
   );

@@ -521,7 +521,7 @@ export const sendConfirmationEmail = async ( sender ) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    return 'Correo de confirmación enviado con éxito';
+    return 'Email was send successfully';
   } catch (error) {
     console.error('Error al enviar el correo de confirmación:', error);
     throw new Error('500 - Internal server error: ', error);

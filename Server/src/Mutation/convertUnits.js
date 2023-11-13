@@ -20,7 +20,7 @@ export const convertUnits = async (args) => {
     }
     catch (error) {
         console.log('Error in conversion', error)
-        throw new Error('500 - Internal Error: No se pudo realizar la conversión' + error)
+        throw new Error('500 - Internal Error: ' + error)
     }
 
 }
@@ -32,7 +32,7 @@ export const getUnitsByGroups = async (group) => {
       return measurementGroup.unidades
     }
     else{
-      throw new Error(`Grupo de medida '${group}' no encontrado.`);
+      throw new Error(`Mesureament group '${group}' not found.`);
     }
 }
 
