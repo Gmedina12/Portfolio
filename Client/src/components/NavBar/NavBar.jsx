@@ -7,10 +7,13 @@ export const NavBar = () => {
     return(
         <div>
             <Link to='/Aboutme'>
-                <button>About me 👩‍💻</button>
+            {(location === '/Aboutme')? '':<button>About me 👩‍💻</button>}
+            </Link>
+            <Link to='/Experience'>
+            {(location === '/Experience')? '':<button>Experience 🚀</button>}
             </Link>
             <Link to='/Contactme'>
-                <button>Contact me 📧</button>
+            {(location === '/Contactme')? '':<button>Contact me 📧</button>}
             </Link>
             <Link to='/'>
             {(location === '/')? '': <button>Home 🏠</button>}

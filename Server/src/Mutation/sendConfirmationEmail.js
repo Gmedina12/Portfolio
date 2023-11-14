@@ -1,8 +1,10 @@
 import { transporter } from '../../Config/nodemailer.js';
-import 'dotenv/config'
+import 'dotenv'
 
-export const sendConfirmationEmail = async ( sender ) => {
-    const HTMLbody = `
+export const sendConfirmationEmail = async (sender, name) => {
+
+  const EMAIL = process.env.EMAIL
+  const HTMLbody = `
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
@@ -160,7 +162,7 @@ export const sendConfirmationEmail = async ( sender ) => {
       <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="center">
           
-          <img align="center" border="0" src="C:\Users\gpmb_\Documents\Development\Portfolio\Portfolio\Server\assets\image-4.png" alt="Tick Icon" title="Tick Icon" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 14%;max-width: 81.2px;" width="81.2" class="v-src-width v-src-max-width"/>
+          <img align="center" border="0" src="https://img.icons8.com/external-basicons-line-edtgraphics/50/640C54/external-check-ui-edtim-outline-edtim-2.png" alt="Tick Icon" title="Tick Icon" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 14%;max-width: 81.2px;" width="81.2" class="v-src-width v-src-max-width"/>
           
         </td>
       </tr>
@@ -176,7 +178,7 @@ export const sendConfirmationEmail = async ( sender ) => {
         <tr>
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 55px;font-family:'Montserrat',sans-serif;" align="left">
             
-      <h1 class="v-font-size" style="margin: 0px; line-height: 160%; text-align: center; word-wrap: break-word; font-family: 'Montserrat',sans-serif; font-size: 33px; font-weight: 400;"><strong>Mail was sent successfully</strong></h1>
+      <h1 class="v-font-size" style="margin: 0px; line-height: 160%; text-align: center; word-wrap: break-word; font-family: 'Montserrat',sans-serif; font-size: 33px; font-weight: 400;"><strong>Hi ${name}! Your mail was sent successfully</strong></h1>
     
           </td>
         </tr>
@@ -225,9 +227,7 @@ export const sendConfirmationEmail = async ( sender ) => {
       <tbody>
         <tr>
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:40px 55px 10px;font-family:'Montserrat',sans-serif;" align="left">
-            
       <h1 class="v-font-size" style="margin: 0px; line-height: 160%; text-align: center; word-wrap: break-word; font-family: 'Montserrat',sans-serif; font-size: 26px; font-weight: 400;"><strong>Need anything else?</strong></h1>
-    
           </td>
         </tr>
       </tbody>
@@ -409,7 +409,7 @@ export const sendConfirmationEmail = async ( sender ) => {
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 21px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
             <a href="https://twitter.com/Gmedinabelt19" title="Twitter" target="_blank">
-              <img src="C:\Users\gpmb_\Documents\Development\Portfolio\Portfolio\Server\assets\image-3.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+              <img src="https://img.icons8.com/ios-filled/50/0C7B9B/twitterx--v1.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
             </a>
           </td></tr>
         </tbody></table>
@@ -419,7 +419,7 @@ export const sendConfirmationEmail = async ( sender ) => {
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 21px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
             <a href="https://www.instagram.com/gmedinabelt19" title="Instagram" target="_blank">
-              <img src="C:\Users\gpmb_\Documents\Development\Portfolio\Portfolio\Server\assets\image-1.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+              <img src="https://img.icons8.com/fluency-systems-filled/48/0C7B9B/instagram-new.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
             </a>
           </td></tr>
         </tbody></table>
@@ -429,7 +429,7 @@ export const sendConfirmationEmail = async ( sender ) => {
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 21px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
             <a href="https://www.linkedin.com/in/ginapaolamedina/" title="LinkedIn" target="_blank">
-              <img src="C:\Users\gpmb_\Documents\Development\Portfolio\Portfolio\Server\assets\image-2.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+              <img src="https://img.icons8.com/ios-filled/50/0C7B9B/linkedin.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
             </a>
           </td></tr>
         </tbody></table>
@@ -439,7 +439,7 @@ export const sendConfirmationEmail = async ( sender ) => {
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
             <a href="https://github.com/Gmedina12" title="GitHub" target="_blank">
-              <img src="C:\Users\gpmb_\Documents\Development\Portfolio\Portfolio\Server\assets\image-5.png" alt="GitHub" title="GitHub" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+              <img src="https://img.icons8.com/glyph-neue/64/0c7b9b/github.png" alt="GitHub" title="GitHub" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
             </a>
           </td></tr>
         </tbody></table>
@@ -512,18 +512,19 @@ export const sendConfirmationEmail = async ( sender ) => {
     </html>
     `;
 
-    const mailOptions = {
-    from: 'gina.medina.1994@gmail.com',
-    to: sender, 
-    subject: 'Thanks for contact me!⭐',
+  const mailOptions = {
+    from: EMAIL,
+    to: sender,
+    subject: `Thanks for contact me ${name}!⭐`,
     html: HTMLbody
   };
-
+  // console.log(mailOptions)
   try {
     await transporter.sendMail(mailOptions);
+    // console.log(mailOptions)
     return 'Email was send successfully';
   } catch (error) {
-    console.error('Error al enviar el correo de confirmación:', error);
+    console.log('Soy el error del email', error);
     throw new Error('500 - Internal server error: ', error);
   }
 };

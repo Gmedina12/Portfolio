@@ -57,5 +57,5 @@ type Mutation{
 
   sendConfirmationEmail(
     sender: String!
-    subject: String!): String
+    name: String!): String
 }`;

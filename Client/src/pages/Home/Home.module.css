@@ -1,0 +1,35 @@
+.gradientTextTitle {
+    font-size: 2em;
+    background: linear-gradient(to right, var(--color-first),var(--color-sixth), var(--color-thirt),var(--color-seventh));
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.containertitles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.quoteOW{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    margin-left: 29%;
+    width: 40vw;
+    height: 24vh;
+    border-color: var(--color-second);
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 25% 0% 27% 0% / 21% 29% 21% 23% ;
+}
+.containerDescription{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

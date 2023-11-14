@@ -19,7 +19,7 @@ export const resolvers = {
           return { ...data, rates: data.rates[to] }
         }
         else {
-          throw new Error('400 - Error en la petición' + Error.name)
+          throw new Error('400 - Error in the request' + Error.name)
         }
       }
       catch (error) {
@@ -72,17 +72,17 @@ export const resolvers = {
           return result
         }
         catch(error){
-            console.log("Error al realizar conversión de unidades", error);
+            console.log("Error when converting units", error);
             throw new Error ('500 - Internal server error: ' + error)
         }
       },
-      sendConfirmationEmail: async ( sender, subject ) => {
+      sendConfirmationEmail: async ( sender ) => {
         try{
-          const sendMail = sendConfirmationEmail( sender, subject )
+          const sendMail = sendConfirmationEmail( sender )
           return sendMail
         }
         catch(error){
-          console.log("Error al enviar el  email", error);
+          console.log("Error sending email", error);
           throw new Error ('500 - Internal server error: ' + error)
         }
         
@@ -93,7 +93,7 @@ export const resolvers = {
           return recieveEmail
         }
         catch(error){
-          console.log("No se pudo recibir el email", error);
+          console.log("Could not receive email", error);
           throw new Error ('500 - Internal server error: ' + error)
         }
       },
