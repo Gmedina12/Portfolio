@@ -1,0 +1,15 @@
+.bgFooter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: rgb(100, 12, 84);
+    background: linear-gradient(90deg, rgba(100, 12, 84, 1) 8%, rgba(36, 4, 92, 1) 22%, rgba(36, 4, 92, 1) 36%, rgba(28, 4, 84, 1) 49%, rgba(12, 36, 148, 1) 63%, rgba(12, 76, 156, 1) 79%, rgba(12, 123, 155, 1) 95%);
+}
+
+.footerText{
+    color: var(--color-mono-second);
+    font-size: 2vh;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;;
+}

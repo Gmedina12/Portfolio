@@ -9,6 +9,7 @@ import { About } from './pages/About/About.jsx'
 import { ContactPage } from './pages/ContactPage/ContactPage.jsx'
 import { NavBar } from './components/NavBar/NavBar.jsx'
 import { Experience } from './pages/Development/DevExperience.jsx'
+import { Footer } from './components/Footer/Footer.jsx'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/Contactme' element={<ContactPage />} />
         <Route path='/Experience' element={<Experience />}/>
       </Routes>
+      <Footer />
     </div>
   )
 }

@@ -1,0 +1,89 @@
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.gradientProjects {
+    margin-top: 2%;
+    font-size: 2em;
+    background: linear-gradient(to right, #940444,var(--color-sixth), var(--color-thirt),var(--color-seventh));
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+    background-size: 200% 100%;
+    animation: gradientAnimation 3s linear infinite;
+}
+
+.techUsedInProjects{
+    padding-left: 10px;
+    margin-top: 10%;
+}
+
+.containerProject {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-items: stretch;
+    align-items: stretch;
+ }
+
+
+.projects{
+    padding-left: 20px;
+    margin-top: 5%;
+    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/10px 10px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/10px 10px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/10px 10px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/10px 10px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 8px) calc(100% - 20px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 20px) calc(100% - 8px) no-repeat,
+            linear-gradient(168deg, #640c54 16%, #24045c 30%, #24045c 42%, #1c0454 54%, #0c4c9c 66%, rgba(2, 158, 223, 0.81) 79%, #0c7b9b 92%),
+            linear-gradient(90deg, transparent 0%, #48abe0 100%);
+border-radius: 10px;
+padding: 19px;
+box-sizing: border-box;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: #ffffff;
+  outline: 3px #ffffff solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.button .text {
+  color: #181717;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.button svg path {
+  transition: 400ms;
+}
+
+.button:hover {
+  background-color: transparent;
+}
+
+.button:hover .text {
+  color: #ffffff;
+}
+
+.button:hover svg path {
+  fill: #ffffff;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
+import style from './Teacher.module.css'
 
 const MESUREMENT_UNITS = gql`
   mutation MeasurementUnits($group: String!, $convertFrom: String!, $convertTo: String!, $quantity: Float!) {
@@ -44,7 +45,7 @@ export const MeasurementUnitsConverter = () => {
         } else {
             setShowResult(true)
         }
-       
+
     };
     const switchUnit = () => {
         const temp = convertFrom
@@ -55,60 +56,61 @@ export const MeasurementUnitsConverter = () => {
 
     return (
         <div>
-            <div>
+            
+                <div className={style.gradientTextBBASubTeach}>
+                    <h2>Mathematics and Physics Teacher</h2>
+                </div><br /><br />
+
                 <div>
-                    <h3> Mathematics and Physics Teacher 👩‍🏫</h3>
+                    <h3 className={style.gradientTextSubTeach2}>Unit converter&nbsp;</h3>📐💾⚖️
                 </div>
+
+                <div className={style.parentTeach}>
+                <div className={style.div1Teach}>
                 <div>
-                    <h6>I've also worked as a mathematics and physics teacher. I love sharing knowledge, focusing on the essentials, and nurturing individuals to overcome their fears and develop a love for the exact sciences.</h6>
-                </div>
-                <div>
-                    <h4>Unit converter 📐💾⚖️</h4>
-                </div>
-                <div>
-                    <label htmlFor="group">Type of Measurement Unit: </label>
-                    <select id='group' onChange={e => handlerGroup(e)} value={group}>
-                        <option value="" selected disabled hidden>- Select unit -</option>
-                        {dataAllG && dataAllG.getAllGroups ? dataAllG.getAllGroups.map((item, index) => <option key={index} value={item}>{item}</option>)
+                
+                    <label className={style.labelTeach} htmlFor="group">Type of Measurement Unit: </label>
+                    <select className={style.typeMesurement} id='group' onChange={e => handlerGroup(e)} value={group}>
+                        <option className={style.typeMesurement} value="" selected disabled hidden>- Select unit -</option>
+                        {dataAllG && dataAllG.getAllGroups ? dataAllG.getAllGroups.map((item, index) => <option className={style.typeMesurement} key={index} value={item}>{item}</option>)
                             : ''}
+                    </select>
+                </div><br/>
+                    <label className={style.labelTeach} htmlFor="unit">I want to convert from: </label>
+                    <select className={style.selectTextTeach} id='unit' onChange={e => setconvertFrom(e.target.value)} value={convertFrom}>
+                        <option className={style.selectTextTeach} value="" selected disabled hidden>- Select unit-</option>
+                        {dataAllU?.getUnitsByGroups && dataAllU?.getUnitsByGroups.map((unit) => <option className={style.selectTextTeach} value={unit}>{unit}</option>)}
                     </select>
                 </div>
 
-                <div>
-                    <label htmlFor="unit">I want to convert from: </label>
-                    <select id='unit' onChange={e => setconvertFrom(e.target.value)} value={convertFrom}>
-                        <option value="" selected disabled hidden>- Select unit-</option>
-                        {dataAllU?.getUnitsByGroups && dataAllU?.getUnitsByGroups.map((unit) => <option value={unit}>{unit}</option>)}
+                <div className={style.div4Teach}>
+                    <br/><br/><label className={style.labelTeach} htmlFor="unit2">To: </label>
+                    <select className={style.selectTextTeach} id='unit2' onChange={e => setconvertTo(e.target.value)} value={convertTo}>
+                        <option className={style.selectTextTeach} value="" selected disabled hidden>- Select unit-</option>
+                        {dataAllU?.getUnitsByGroups && dataAllU?.getUnitsByGroups.map((unit) => <option className={style.selectTextTeach} value={unit}>{unit}</option>)}
                     </select>
                 </div>
-                <div>
-                    <label htmlFor="unit2">To: </label>
-                    <select id='unit2' onChange={e => setconvertTo(e.target.value)} value={convertTo}>
-                        <option value="" selected disabled hidden>- Select unit-</option>
-                        {dataAllU?.getUnitsByGroups && dataAllU?.getUnitsByGroups.map((unit) => <option value={unit}>{unit}</option>)}
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="quantity" >Quantity: </label>
+                <div className={style.div2Teach}>
+                    <label className={style.labelTeach} htmlFor="quantity" >Quantity: </label>
                     <input id='quantity' type='number' onChange={e => setQuantity(e.target.value)} placeholder='Enter quatity to convert' />
                 </div>
-                <div>
-                    <div>
-                        <button onClick={switchUnit}>🔄</button>
-                    </div>
-                    <button onClick={handlerCalculate} disabled={!group || !convertFrom || !convertTo || !quantity}>Convert 🖩</button>
+
+                <div className={style.div3Teach}>
+                    <button className={style.BtnTeach} onClick={switchUnit}>&nbsp;&nbsp;<img width="18" height="18" src="https://img.icons8.com/pastel-glyph/64/ffffff/sorting-arrows-horizontal--v2.png" alt="sorting-arrows--v1" /><p className={style.text}>Switch</p></button>
                 </div>
-                <div>
+                <div className={style.div5Teach}>
+                <br/><br/><button className={style.buttonCalculate} onClick={handlerCalculate} disabled={!group || !convertFrom || !convertTo || !quantity}>Convert <img width="16" height="16" src="https://img.icons8.com/metro/26/ffffff/calculator.png" alt="calculator" /></button> <br /><br />
+
                     {showResult &&
                         (loading ? (
-                            <p>Calculating ⏳...</p>
+                            <p className={style.loaderTeach}></p>
                         ) : error ? (
                             <p>Error ❌: {error.message}</p>
                         ) : (
-                            <p>
-                                Result 🔣: In {quantity} {convertFrom}s there are{' '}
+                            <h5 className={style.result}>
+                                <p className={style.resultText}>Result: </p> In {quantity} {convertFrom}s there are{' '}
                                 {data?.measurementUnits} {convertTo}s
-                            </p>
+                            </h5>
                         ))}
                 </div>
             </div>

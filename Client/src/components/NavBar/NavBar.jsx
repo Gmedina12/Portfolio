@@ -1,22 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
+import style from './NavBar.module.css'
 
 export const NavBar = () => {
 
     const location = useLocation().pathname
 
     return(
-        <div>
+        <div className={style.bgNavbar}>
             <Link to='/Aboutme'>
-            {(location === '/Aboutme')? '':<button>About me 👩‍💻</button>}
+            {(location === '/Aboutme')? '':<button className={style.navButtons}>About me</button>}
             </Link>
             <Link to='/Experience'>
-            {(location === '/Experience')? '':<button>Experience 🚀</button>}
+            {(location === '/Experience')? '':<button className={style.navButtons}>Experience</button>}
             </Link>
             <Link to='/Contactme'>
-            {(location === '/Contactme')? '':<button>Contact me 📧</button>}
+            {(location === '/Contactme')? '':<button className={style.navButtons}>Contact me</button>}
             </Link>
             <Link to='/'>
-            {(location === '/')? '': <button>Home 🏠</button>}
+            {(location === '/')? '': <button className={style.navButtons}>Home </button>}
             </Link>
         </div>
     )

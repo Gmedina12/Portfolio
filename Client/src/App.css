@@ -1,0 +1,33 @@
+/* styles.css */
+/* Estilo de la barra de desplazamiento vertical en WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento vertical */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #8a2be2; /* Púrpura */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-horizontal {
+    height: 8px; 
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    background-color: #ffffff; 
+    border-radius: 2px; 
+}
+
+::-webkit-scrollbar-track:horizontal {
+    background-color: #f1f1f1;
+}
+
+
+body {
+    scrollbar-color: #8a2be2 #f1f1f1;
+    scrollbar-width: thin;
+}

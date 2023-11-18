@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import style from './ContactForm.module.css'
 
 
 function isValidEmail(email) {
@@ -15,7 +18,7 @@ function isValidName(name) {
 
 
 function isValidSubject(subject) {
-  const subjectRegex = /^[A-Za-z0-9\s]{1,100}$/
+  const subjectRegex = /^[A-Za-z0-9\s]{1,50}$/
   return subjectRegex.test(subject)
 }
 
@@ -64,40 +67,76 @@ export const ContactForm = () => {
   };
 
   return (
+    <div className={style.containerForm }>
     <form onSubmit={handleSubmit}>
-      <div>
+
+      <div className={style.group }>
         <label>
-          Name *: <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          Name *: <input type="text" value={name} placeholder='Your name' onChange={(e) => setName(e.target.value)} required
+    onInvalid={(e) => e.target.setCustomValidity('Name is required. Only alphanumeric characters')}
+    onInput={(e) => e.target.setCustomValidity('')}/>
         </label>
       </div>
-      {!isValidName(name) && <p>Error: Invalid entry. Only Alphanumeric characters</p>}
+      {!isValidName(name) && <p>{Error.message}</p>}
+
+      <div className={style.group }>
+        <label>
+          Email *: <input type="email" value={sender} placeholder='An email that you have access to' onChange={(e) => setSender(e.target.value)} required
+    onInvalid={(e) => e.target.setCustomValidity('Invalid email. Please include an @ in the entered email.')}
+    onInput={(e) => e.target.setCustomValidity('')}/>
+        </label>
+      </div>
+      {!isValidEmail(sender) && <p>{Error.message}</p>}
+
+      <div className={style.group }>
+        <label>
+          Subject *: <input type="text" value={subject} placeholder='Contact reason' onChange={(e) => setSubject(e.target.value)} required
+    onInvalid={(e) => e.target.setCustomValidity("Enter a subject; I'd like to know what we're going to talk about")}
+    onInput={(e) => e.target.setCustomValidity('')} />
+        </label>
+      </div>
+      {!isValidSubject(subject) && <p>{Error.message}</p>}
 
       <div>
         <label>
-          Email *: <input type="email" value={sender} onChange={(e) => setSender(e.target.value)} required />
-        </label>
-      </div>
-      {!isValidEmail(sender) && <p>Error: Invalid email</p>}
-
-      <div>
-        <label>
-          Subject *: <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} required />
-        </label>
-      </div>
-      {!isValidSubject(subject) && <p>Error: Invalid entry. Only Alphanumeric characters</p>}
-
-      <div>
-        <label>
-          <p> Message *: </p>
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
+          <p> Message: </p> <br/>
+          <ReactQuill 
+            value={message} 
+            onChange={(value) => setMessage(value)} 
+            modules={quillModules} 
+            formats={quillFormats}
+            required
+    onInvalid={(e) => e.target.setCustomValidity('Oh! A message is needed to start a conversation')}
+    onInput={(e) => e.target.setCustomValidity('')}
+          />
         </label>
       </div>
 
-      <div>
-        <button type="submit">
+      <br/>
+
+      <div className={style.containerSubmitBut}>
+        <button type="submit" className={style.submitButton}>
           Submit
         </button>
       </div>
     </form>
+    </div>
   );
 };
+
+const quillModules = {
+  toolbar: [
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+    ['clean']
+  ],
+  clipboard: {
+    matchVisual: false,
+  },
+};
+
+const quillFormats = [
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link'
+];
