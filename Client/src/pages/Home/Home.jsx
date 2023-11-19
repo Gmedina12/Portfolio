@@ -5,7 +5,6 @@ export const Home = () => {
 
     return (
         <div>
-            <NavBar />
             <div className={style.containertitles}>
                 <h1 className={style.loader}>Welcome to my portfolio!</h1> <br/>
                 <h2 className={style.subtitle}>Hi! 👋 I'm Gina Paola Medina</h2><br/>

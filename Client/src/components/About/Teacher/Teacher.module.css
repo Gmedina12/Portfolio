@@ -13,25 +13,41 @@
 
 .gradientTextBBASubTeach {
 
+    width: 80%;
+    max-width: 700px auto;
+    margin: 30px auto;
     justify-content: center;
     align-items: center;
-    margin-left: 34.5%;
     background: linear-gradient(to right, var(--color-seventh), var(--color-fiveth), var(--color-fourth), var(--color-second));
     -webkit-background-clip: text;
     color: transparent;
     display: inline-block;
+    text-align: center;
 }
 
 .gradientTextSubTeach2 {
     justify-content: center;
     align-items: center;
-    margin-left: 44.5%;
+    text-align: center;
     background: linear-gradient(to right, var(--color-seventh), var(--color-fiveth), var(--color-fourth), var(--color-second));
     -webkit-background-clip: text;
     color: transparent;
     display: inline-block;
 }
 
+.containertitlesTech {
+    width: 80%;
+    height: auto;
+    max-width: 800px;
+    min-width: 360;
+    margin: 5px auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    
+}
 
 .BtnTeach {
     display: flex;
@@ -83,6 +99,7 @@
 /* hover effect on button width */
 .BtnTeach:hover {
     width: 125px;
+    margin-left: -46px;
     border-radius: 40px;
     transition-duration: .3s;
 }
@@ -208,14 +225,18 @@
 
 /* GRID */
 .parentTeach {
+    width: 80%;
+    max-width: 800px;
+    min-width: 300px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: auto 30px auto;
+    /* repeat(3, 1fr); */
+    grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     align-items: center;
     justify-content: center;
-    margin-left: 25%;
+    margin:auto;
     padding-top: 15px;
 }
 
@@ -229,7 +250,7 @@
 
 .div3Teach {
     grid-area: 1 / 2 / 3 / 3;
-    padding-left: 40px;
+    
 }
 
 .div4Teach {
@@ -242,20 +263,40 @@
     padding-left: 45px;
 }
 
+
+@media only screen and (max-width: 760px) {
+    .parentTeach {
+        grid-template-columns: 300px;
+        /* grid-template-rows: repeat(5, 1fr); */
+        margin-left: 0;
+    }
+
+    .div1Teach, .div2Teach, .div3Teach, .div4Teach, .div5Teach {
+        grid-column: 1 / 2;
+        padding-left: 0;
+        height: fit-content;
+    }
+    .div1Teach {
+        grid-row: 1 / 2;
+    }
+    .div2Teach {
+        grid-row: 2 / 3;
+    }
+    .div3Teach {
+        grid-row: 3 / 4;
+        display: flex;
+        justify-content: center;
+    }
+    .div4Teach {
+        grid-row: 4 / 5;
+    }
+    .div5Teach{
+        grid-row: 5 / 6;
+    }
+}
+
 /* Container descript */
 
-.containerDescriptTeach {
-    width: 80%;
-    height: auto;
-    align-items: center;
-    text-align: justify;
-    justify-content: center;
-    min-width: 50%;
-    max-width: 400px;
-    max-height: 60vh;
-    padding-top: 50px;
-    padding-left: 25%;
-}
 
 .buttonCalculate {
     border: none;
@@ -284,7 +325,12 @@
   }
   .typeMesurement{
     font-family: 'Montserrat', sans-serif;
-    font-size: 1px;
+    font-size: 16px;
     font-weight: bolder;
     color: var(--color-first);
+  }
+  .measurementResponsive{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }

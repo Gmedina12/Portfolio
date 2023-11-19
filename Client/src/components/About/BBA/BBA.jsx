@@ -51,10 +51,10 @@ export const CurrencyConverter = () => {
       </div>
       <div className={style.containerDescript}>
       <p>Crafting my digital space, the currency and unit converters embody the convergence of Business Administration, Web Development, and Mathematics & Physics Education. These tools go beyond functionalities, symbolizing a dynamic synthesis of business insight, coding proficiency, and a commitment to simplifying complex concepts. The currency converter mirrors my passion for economics, while the unit converter reflects my dedication to fostering a love for exact sciences.</p>
-    </div><br/><br/>
+    </div>
       <div className={style.containertitlesBBA}>
         <h2 className={style.gradientTextBBASub}>Business Administration and Finance</h2><br/>
-      </div><br/>
+      </div>
 
 
       <div className={style.containertitlesBBA}>

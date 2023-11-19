@@ -56,26 +56,24 @@ export const MeasurementUnitsConverter = () => {
 
     return (
         <div>
-            
-                <div className={style.gradientTextBBASubTeach}>
-                    <h2>Mathematics and Physics Teacher</h2>
-                </div><br /><br />
+            <div className={style.containertitlesTech}>
+                <h2 className={style.gradientTextBBASubTeach}>Mathematics and Physics Teacher</h2>
+            </div>
 
-                <div>
-                    <h3 className={style.gradientTextSubTeach2}>Unit converter&nbsp;</h3>📐💾⚖️
-                </div>
+            <div className={style.containertitlesTech}>
+                <h3 className={style.gradientTextSubTeach2}>Unit converter&nbsp;</h3>📐💾⚖️
+            </div>
 
-                <div className={style.parentTeach}>
+            <div className={style.parentTeach}>
                 <div className={style.div1Teach}>
-                <div>
-                
-                    <label className={style.labelTeach} htmlFor="group">Type of Measurement Unit: </label>
-                    <select className={style.typeMesurement} id='group' onChange={e => handlerGroup(e)} value={group}>
-                        <option className={style.typeMesurement} value="" selected disabled hidden>- Select unit -</option>
-                        {dataAllG && dataAllG.getAllGroups ? dataAllG.getAllGroups.map((item, index) => <option className={style.typeMesurement} key={index} value={item}>{item}</option>)
-                            : ''}
-                    </select>
-                </div><br/>
+                    <div className={style.measurementResponsive}>
+                        <label className={style.labelTeach} htmlFor="group">Type of Measurement Unit:&nbsp;</label>
+                        <select className={style.typeMesurement} id='group' onChange={e => handlerGroup(e)} value={group}>
+                            <option className={style.typeMesurement} value="" selected disabled hidden>- Select unit -</option>
+                            {dataAllG && dataAllG.getAllGroups ? dataAllG.getAllGroups.map((item, index) => <option className={style.typeMesurement} key={index} value={item}>{item}</option>)
+                                : ''}
+                        </select>
+                    </div><br />
                     <label className={style.labelTeach} htmlFor="unit">I want to convert from: </label>
                     <select className={style.selectTextTeach} id='unit' onChange={e => setconvertFrom(e.target.value)} value={convertFrom}>
                         <option className={style.selectTextTeach} value="" selected disabled hidden>- Select unit-</option>
@@ -84,7 +82,7 @@ export const MeasurementUnitsConverter = () => {
                 </div>
 
                 <div className={style.div4Teach}>
-                    <br/><br/><label className={style.labelTeach} htmlFor="unit2">To: </label>
+                    <br /><label className={style.labelTeach} htmlFor="unit2">To: </label>
                     <select className={style.selectTextTeach} id='unit2' onChange={e => setconvertTo(e.target.value)} value={convertTo}>
                         <option className={style.selectTextTeach} value="" selected disabled hidden>- Select unit-</option>
                         {dataAllU?.getUnitsByGroups && dataAllU?.getUnitsByGroups.map((unit) => <option className={style.selectTextTeach} value={unit}>{unit}</option>)}
@@ -99,7 +97,7 @@ export const MeasurementUnitsConverter = () => {
                     <button className={style.BtnTeach} onClick={switchUnit}>&nbsp;&nbsp;<img width="18" height="18" src="https://img.icons8.com/pastel-glyph/64/ffffff/sorting-arrows-horizontal--v2.png" alt="sorting-arrows--v1" /><p className={style.text}>Switch</p></button>
                 </div>
                 <div className={style.div5Teach}>
-                <br/><br/><button className={style.buttonCalculate} onClick={handlerCalculate} disabled={!group || !convertFrom || !convertTo || !quantity}>Convert <img width="16" height="16" src="https://img.icons8.com/metro/26/ffffff/calculator.png" alt="calculator" /></button> <br /><br />
+                    <br /><br /><button className={style.buttonCalculate} onClick={handlerCalculate} disabled={!group || !convertFrom || !convertTo || !quantity}>Convert <img width="16" height="16" src="https://img.icons8.com/metro/26/ffffff/calculator.png" alt="calculator" /></button> <br /><br />
 
                     {showResult &&
                         (loading ? (
@@ -112,7 +110,7 @@ export const MeasurementUnitsConverter = () => {
                                 {data?.measurementUnits} {convertTo}s
                             </h5>
                         ))}
-                </div>
+                </div><br /><br />
             </div>
         </div>
     );

@@ -10,12 +10,30 @@
   --color-mono-first: #000000;
   --color-mono-second: #ffffff;
   --color-mono-thirt: #4a4e69;
+  --color-mono-fourth: #d6d9f1;
 }
+
+/* themes */
+body.light {
+  background-color: var(--color-mono-second);
+  color: black;
+}
+
+body.dark {
+  background-color: var(--color-mono-second);
+  color: var(--color-mono-thirt);
+  --color-mono-second: #000000;
+  --color-mono-first: #ffffff;
+  --color-mono-fourth: #4a4e69;
+  --color-mono-thirt: #d6d9f1;
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
 body{
   font-family: 'Montserrat', sans-serif;
+  color: var(--color-mono-second);
 }
 
 *{
@@ -26,9 +44,7 @@ body{
 #root {
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--color-mono-second);
 }
-
 
 
 

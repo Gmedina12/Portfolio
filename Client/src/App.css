@@ -1,12 +1,13 @@
-/* styles.css */
-/* Estilo de la barra de desplazamiento vertical en WebKit (Chrome, Safari) */
+
+
 ::-webkit-scrollbar {
-    width: 8px; /* Ancho de la barra de desplazamiento vertical */
+    width: 8px; 
+    height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #8a2be2; /* Púrpura */
-    border-radius: 8px; /* Bordes redondeados */
+    background-color: var(--color-second); 
+    border-radius: 8px; 
 }
 
 ::-webkit-scrollbar-track {
@@ -14,20 +15,25 @@
 }
 
 ::-webkit-scrollbar-horizontal {
-    height: 8px; 
+    height: 2px;   
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-    background-color: #ffffff; 
-    border-radius: 2px; 
+    background-color: var(--color-mono-second); 
+    border-radius: 8px; 
 }
 
 ::-webkit-scrollbar-track:horizontal {
-    background-color: #f1f1f1;
+    background-color: var(--color-mono-second)
 }
 
 
 body {
-    scrollbar-color: #8a2be2 #f1f1f1;
+    scrollbar-color: var(--color-thirt) #f1f1f1;
     scrollbar-width: thin;
 }
+
+.appContainer {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }

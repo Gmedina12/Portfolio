@@ -1,7 +1,7 @@
 import style from './Projects.module.css'
 export const Projects = () => {
     return (
-        <div>
+        <div className={style.container}>
             <div className={style.gradientProjects}>
                 <h2>Projects</h2>
             </div>

@@ -1,10 +1,12 @@
 .gradientTextExperience {
+
     margin-top: 2%;
     font-size: 2em;
     background: linear-gradient(to right, #940444,var(--color-sixth), var(--color-thirt),var(--color-seventh));
     -webkit-background-clip: text;
     color: transparent;
     display: inline-block;
+    text-shadow: 2px 2px 4px var(--color-sixth);
 }
 
 .techUsed{
@@ -26,12 +28,12 @@
 .expTech{
     padding-left: 20px;
     margin-top: 5%;
-    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/10px 10px no-repeat,
-            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/10px 10px no-repeat,
-            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/10px 10px no-repeat,
-            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/10px 10px no-repeat,
-            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 8px) calc(100% - 20px) no-repeat,
-            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 20px) calc(100% - 8px) no-repeat,
+    background: radial-gradient(circle at 100% 100%, var(--color-mono-second) 0, var(--color-mono-second) 6px, transparent 6px) 0% 0%/10px 10px no-repeat,
+            radial-gradient(circle at 0 100%, var(--color-mono-second) 0, var(--color-mono-second) 6px, transparent 6px) 100% 0%/10px 10px no-repeat,
+            radial-gradient(circle at 100% 0, var(--color-mono-second) 0, var(--color-mono-second) 6px, transparent 6px) 0% 100%/10px 10px no-repeat,
+            radial-gradient(circle at 0 0, var(--color-mono-second) 0, var(--color-mono-second) 6px, transparent 6px) 100% 100%/10px 10px no-repeat,
+            linear-gradient(var(--color-mono-second), var(--color-mono-second)) 50% 50%/calc(100% - 8px) calc(100% - 20px) no-repeat,
+            linear-gradient(var(--color-mono-second), var(--color-mono-second)) 50% 50%/calc(100% - 20px) calc(100% - 8px) no-repeat,
             linear-gradient(168deg, #640c54 16%, #24045c 30%, #24045c 42%, #1c0454 54%, #0c4c9c 66%, rgba(2, 158, 223, 0.81) 79%, #0c7b9b 92%),
             linear-gradient(90deg, transparent 0%, #48abe0 100%);
 border-radius: 10px;
@@ -167,3 +169,12 @@ box-sizing: border-box;
     fill: var(--color-thirt);
    }
    
+   .containerTech{
+    width: 80%;
+    max-width: 800px;
+    min-width: 320px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+   }

@@ -1,7 +1,7 @@
 import style from './TechExperience.module.css'
 export const TechExperience = () => {
     return (
-        <div>
+        <div className={style.containerTech}>
             <div className={style.gradientTextExperience}>
                 <h2>Tech Experience</h2>
             </div>

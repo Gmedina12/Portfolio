@@ -66,32 +66,32 @@
     text-shadow: 1px 1px 2px var(--color-sixth)
 }
 
+
 .quoteOW{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 5%;
-    margin-left: 25%;
-    width: 50vw;
-    height: 24vh;
-    padding: 30px;
-    padding-top: 35px;
-    padding-right: 10px;
-    padding-left: 10px;
-    clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-    border-width: 5px;
-    /* border-radius: 25% 0% 27% 0% / 21% 29% 21% 23% ; */
-    background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 1px, transparent 1px) 0% 0%/8px 8px no-repeat,
-            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 1px, transparent 1px) 100% 0%/8px 8px no-repeat,
-            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 1px, transparent 1px) 0% 100%/8px 8px no-repeat,
-            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 1px, transparent 1px) 100% 100%/8px 8px no-repeat,
-            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 14px) calc(100% - 16px) no-repeat,
-            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 14px) no-repeat,
-            linear-gradient(168deg, #640c54 16%, #24045c 30%, #24045c 42%, #1c0454 54%, #0c4c9c 66%, rgba(2, 158, 223, 0.81) 79%, #0c7b9b 92%),
-            linear-gradient(90deg, transparent 0%, #48abe0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-left: 25%;
+  width: 50vw;
+  height: 24vh;
+  padding: 30px;
+  padding-top: 35px;
+  padding-right: 10px;
+  padding-left: 10px;
+  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+border-top-right-radius: 10px;
+border-bottom-left-radius: 10px;
+  border-width: 5px;
+  background: radial-gradient(circle at 100% 100%, transparent 0, transparent 1px, transparent 1px) 0% 0%/8px 8px no-repeat,
+          radial-gradient(circle at 0 100%, var(--color-mono-second) 0, var(--color-mono-second) 1px, transparent 1px) 100% 0%/8px 8px no-repeat,
+          radial-gradient(circle at 100% 0, var(--color-mono-second) 0, var(--color-mono-second) 1px, transparent 1px) 0% 100%/8px 8px no-repeat,
+          radial-gradient(circle at 0 0, var(--color-mono-second) 0, var(--color-mono-second) 1px, transparent 1px) 100% 100%/8px 8px no-repeat,
+          linear-gradient(var(--color-mono-second), var(--color-mono-second)) 50% 50%/calc(100% - 14px) calc(100% - 16px) no-repeat,
+          linear-gradient(var(--color-mono-second), var(--color-mono-second)) 50% 50%/calc(100% - 16px) calc(100% - 14px) no-repeat,
+          linear-gradient(168deg, #640c54 16%, #24045c 30%, #24045c 42%, #1c0454 54%, #0c4c9c 66%, rgba(2, 158, 223, 0.81) 79%, #0c7b9b 92%),
+          linear-gradient(90deg, transparent 0%, #48abe0 100%);
 box-sizing: border-box;
 border-image-slice: 1;
 border-image-width: 5px;
@@ -99,6 +99,7 @@ animation: rotateColors 5s linear infinite;
 
 
 }
+
 
 .containerDescription{
     width: 80% auto;
