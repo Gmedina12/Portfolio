@@ -11,6 +11,8 @@ import { NavBar } from './components/NavBar/NavBar.jsx'
 import { Experience } from './pages/Development/DevExperience.jsx'
 import { Footer } from './components/Footer/Footer.jsx'
 import { ThemeButton } from './components/ThemeButton/ThemeButton.jsx'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -33,6 +35,18 @@ function App() {
   }, [])
   return (
     <div>
+    <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
       <NavBar />
       <ThemeButton onClick={toggleTheme} />
       <Routes>

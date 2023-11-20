@@ -3,6 +3,9 @@ import { useMutation, gql } from '@apollo/client';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import style from './ContactForm.module.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function isValidEmail(email) {
@@ -57,12 +60,29 @@ export const ContactForm = () => {
     event.preventDefault();
 
     if (validateForm()) {
-      recieveContactEmail({ variables: { name, sender, subject, message } });
-      sendConfirmationEmail({ variables: { sender, name } });
-      setName('');
-      setSender('');
-      setSubject('');
-      setMessage('');
+      
+        recieveContactEmail({ variables: { name, sender, subject, message } });
+        sendConfirmationEmail({ variables: { sender, name } });
+        setName('');
+        setSender('');
+        setSubject('');
+        setMessage('');
+
+        toast(`Thanks for contact me ${name}!⭐.\n Check your e-mail`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+
+          setName('');
+          setSender('');
+          setSubject('');
+          setMessage('');    
     }
   };
 
@@ -95,7 +115,15 @@ export const ContactForm = () => {
     onInput={(e) => e.target.setCustomValidity('')} />
         </label>
       </div>
-      {!isValidSubject(subject) && <p>{Error.message}</p>}
+      {!isValidSubject(subject) && <p>{toast.error(Error.message, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        })
+        }</p>}
 
       <div>
         <label>
